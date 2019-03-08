@@ -1,0 +1,20 @@
+<form [formGroup]="phoneForm">
+    <div class="dropdow-group">
+        <p-dropdown [options]="countryCodes" formControlName="selectedCountry" [dropdownIcon]="'pi pi-caret-down'">
+            <ng-template let-item pTemplate="selectedItem" optionLabel="name">
+                <span style="vertical-align:middle">{{item.value.code}}</span>
+            </ng-template>
+            <ng-template let-countries pTemplate="item" optionLabel="name">
+                <div class="ui-helper-clearfix">
+                    <span class="flag flag-{{countries.value.abrev}}"></span>
+                    <span>{{countries.label}}</span>
+                </div>
+            </ng-template>
+        </p-dropdown>
+        <input type="tel" class="phone-number" placeholder="Type number here" formControlName="inputNumber" (input)="onChange($event.target.value)"/>
+        <button class="call-button" (click)="submitForm()"><span class="fas fa-phone"></span> Call</button>
+    </div>
+    <div class="error" *ngIf="error"> Invalid Phone Number</div>
+</form>
+
+
